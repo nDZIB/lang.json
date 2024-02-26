@@ -1,0 +1,61 @@
+<div class="task-view">
+
+  <div class="container">
+    @if(jsonString) {
+    <div style="text-align: center;">
+      <a download="translations.json" [href]="jsonString" class="btn-lnk">Download</a>
+    </div>
+    }
+
+
+    @if(false){<form class="form-language" [formGroup]="newLanguageForm" (ngSubmit)="addLanguage()">
+      <input placeholder="New Language" style="flex: 1" class="input" formControlName="name" type="text">
+      <button class="btn">Add Language</button>
+    </form>}
+
+    <form class="form" (keydown.enter)="insertEntry($event)" (ngSubmit)="persistFile()" [formGroup]="translationFile">
+      <div class="form-body">
+        <table>
+          <thead>
+            <tr>
+              <th class="sn"></th>
+              @for(column of columns; track column) {
+              <th>
+                {{column}}
+                @if(column !== 'key') {
+                <!-- <button class="btn">Sync</button> -->
+                }
+              </th>
+              }
+            </tr>
+          </thead>
+
+          <tbody formArrayName="json">
+            @for(group of groups; let gIndex=$index; track gIndex) {
+            <tr [formGroupName]="gIndex">
+              <td class="sn">{{gIndex+1}}</td>
+              @for(control of group; let index=$index; track index) {
+              <td><input [attr.ariaRowIndex]="gIndex" class="input" [ngClass]="{'key': columns[index] === 'key'}"
+                  [formControlName]="columns[index]" type="text"></td>
+              }
+            </tr>
+            }
+            <tr style="border: none;">
+              <td class="sn">
+                <button class="icon-btn" type="button" (click)="insertEntry($event)">+</button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
+      <div style="padding: 2rem 0; text-align: center;">
+        <button class="btn">Save</button>
+      </div>
+    </form>
+
+  </div>
+
+
+</div>

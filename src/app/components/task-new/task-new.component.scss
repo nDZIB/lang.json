@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 50rem;
+
+  &-group {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+}

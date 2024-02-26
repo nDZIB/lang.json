@@ -1,0 +1,28 @@
+.tasks {
+  margin: 0 auto;
+  max-width: 70%;
+
+  padding: 5rem 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 2rem;
+
+  .btn {
+    margin-left: auto;
+  }
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.task {
+  border: 1px solid lightgray;
+  padding: 2rem;
+  border-radius: .5rem;
+}

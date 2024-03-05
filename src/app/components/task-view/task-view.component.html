@@ -7,7 +7,6 @@
     </div>
     }
 
-
     @if(false){<form class="form-language" [formGroup]="newLanguageForm" (ngSubmit)="addLanguage()">
       <input placeholder="New Language" style="flex: 1" class="input" formControlName="name" type="text">
       <button class="btn">Add Language</button>
@@ -23,10 +22,12 @@
               <th>
                 {{column}}
                 @if(column !== 'key') {
-                <!-- <button class="btn">Sync</button> -->
+                <app-file-upload (data)="populateData($event, column)"></app-file-upload>
+                <button (click)="translate(column === 'fr' ? 'en': 'fr', column === 'fr' ? 'fr': 'en')" class="btn">Translate</button>
                 }
               </th>
               }
+              <th class="sn"></th>
             </tr>
           </thead>
 
@@ -36,8 +37,9 @@
               <td class="sn">{{gIndex+1}}</td>
               @for(control of group; let index=$index; track index) {
               <td><input [attr.ariaRowIndex]="gIndex" class="input" [ngClass]="{'key': columns[index] === 'key'}"
-                  [formControlName]="columns[index]" type="text"></td>
+                  [formControlName]="columns[index]" type="text"/></td>
               }
+              <!-- <td class="sn"><button (click)="deleteEntry(gIndex)" class="btn">Delete</button></td> -->
             </tr>
             }
             <tr style="border: none;">
